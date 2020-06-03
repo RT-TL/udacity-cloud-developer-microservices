@@ -1,0 +1,38 @@
+version: "3"
+services: 
+    reverseproxy:
+        image: dieserwindikus/udagram-reverseproxy
+        ports: 
+            - 8080:8080
+        depends_on:
+            - udagram-api-user
+            - udagram-api-feed
+        restart: always
+    udagram-api-user:
+        image: dieserwindikus/udagram-api-user
+        environment: 
+            POSTGRES_USERNAME: $POSTGRES_USERNAME
+            POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+            POSTGRES_DB: $POSTGRES_DB
+            POSTGRES_HOST: $POSTGRES_HOST
+            AWS_REGION: $AWS_REGION
+            AWS_PROFILE: $AWS_PROFILE
+            AWS_BUCKET: $AWS_BUCKET
+            URL: $URL
+            JWT_SECRET: $JWT_SECRET
+    udagram-api-feed:
+        image: dieserwindikus/udagram-api-feed
+        environment: 
+            POSTGRES_USERNAME: $POSTGRES_USERNAME
+            POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+            POSTGRES_DB: $POSTGRES_DB
+            POSTGRES_HOST: $POSTGRES_HOST
+            AWS_REGION: $AWS_REGION
+            AWS_PROFILE: $AWS_PROFILE
+            AWS_BUCKET: $AWS_BUCKET
+            URL: $URL
+            JWT_SECRET: $JWT_SECRET
+    udagram-frontend:
+        image: dieserwindikus/udagram-frontend
+        ports: 
+            - 8100:80
