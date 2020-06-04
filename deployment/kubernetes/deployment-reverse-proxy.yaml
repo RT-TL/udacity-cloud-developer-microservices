@@ -15,7 +15,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: dieserwindikus/reverseproxy
+      - image: dieserwindikus/udagram-reverseproxy
         name: reverseproxy
         imagePullPolicy: Always  
         resources:

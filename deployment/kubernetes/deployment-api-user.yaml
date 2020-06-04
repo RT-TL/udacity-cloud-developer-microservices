@@ -15,7 +15,7 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: dieserwindikus/udagram-user-feed
+      - image: dieserwindikus/udagram-api-user
         name: backend-feed
         imagePullPolicy: Always  
         resources:
